@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FincaManager.Bussines/FincaManager.Business.csproj" />
+  <Project Path="FincaManager.DataAccess/FincaManager.DataAccess.csproj" />
+  <Project Path="FincaManager.Desktop/FincaManager.Desktop.csproj" />
+  <Project Path="FincaManager.Entities/FincaManager.Entities.csproj" />
+</Solution>

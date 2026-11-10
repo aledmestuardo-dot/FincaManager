@@ -9,7 +9,7 @@ namespace FincaManager.Entities
         private int _idMarca;
         private string _nombre;
 
-        public int IdCateforia
+        public int IdMarca
         {
             get { return _idMarca; }
             set { _idMarca = value; }

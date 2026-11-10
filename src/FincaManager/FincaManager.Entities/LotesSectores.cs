@@ -12,37 +12,58 @@ namespace FincaManager.Entities
         private decimal _areaTrabajableMetros;
         private int _totalPlantas;
         private string _variedadCultivo;
+        private bool _activo;
+        private bool _eliminado;
 
         public int IdLoteSector
         {
             get { return _idLoteSector; }
             set { _idLoteSector = value; }
         }
+
         public int IdFinca
         {
             get { return _idFinca; }
             set { _idFinca = value; }
         }
+
         public string Nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
         }
+
         public decimal AreaTrabajableMetros
         {
             get { return _areaTrabajableMetros; }
             set { _areaTrabajableMetros = value; }
         }
+
         public int TotalPlantas
         {
             get { return _totalPlantas; }
             set { _totalPlantas = value; }
         }
+
         public string VariedadCultivo
         {
             get { return _variedadCultivo; }
             set { _variedadCultivo = value; }
         }
+
+        public bool Activo
+        {
+            get { return _activo; }
+            set { _activo = value; }
+        }
+
+        public bool Eliminado
+        {
+            get { return _eliminado; }
+            set { _eliminado = value; }
+        }
+
+        // Constructor vacío por defecto
         public LotesSectores()
         {
             _idLoteSector = 0;
@@ -51,14 +72,20 @@ namespace FincaManager.Entities
             _areaTrabajableMetros = 0m;
             _totalPlantas = 0;
             _variedadCultivo = string.Empty;
+            _activo = true;
+            _eliminado = false;
         }
+
+        // Constructor completo (ideal para consultas desde la BD)
         public LotesSectores(
             int idLoteSector,
             int idFinca,
             string nombre,
             decimal areaTrabajableMetros,
             int totalPlantas,
-            string variedadCultivo)
+            string variedadCultivo,
+            bool activo,
+            bool eliminado)
         {
             _idLoteSector = idLoteSector;
             _idFinca = idFinca;
@@ -66,7 +93,11 @@ namespace FincaManager.Entities
             _areaTrabajableMetros = areaTrabajableMetros;
             _totalPlantas = totalPlantas;
             _variedadCultivo = variedadCultivo;
+            _activo = activo;
+            _eliminado = eliminado;
         }
+
+        // Constructor para inserción (sin ID, con estados por defecto)
         public LotesSectores(
             int idFinca,
             string nombre,
@@ -80,6 +111,8 @@ namespace FincaManager.Entities
             _areaTrabajableMetros = areaTrabajableMetros;
             _totalPlantas = totalPlantas;
             _variedadCultivo = variedadCultivo;
+            _activo = true;
+            _eliminado = false;
         }
     }
 }

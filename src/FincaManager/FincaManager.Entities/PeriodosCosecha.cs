@@ -11,33 +11,45 @@ namespace FincaManager.Entities
         private DateTime _fechaInicio;
         private DateTime _fechaFin;
         private bool _activo;
+        private bool _eliminado; // Añadido para el borrado lógico
 
         public int IdPeriodo
         {
             get { return _idPeriodo; }
             set { _idPeriodo = value; }
         }
+
         public string Nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
         }
+
         public DateTime FechaInicio
         {
             get { return _fechaInicio; }
             set { _fechaInicio = value; }
         }
+
         public DateTime FechaFin
         {
             get { return _fechaFin; }
             set { _fechaFin = value; }
         }
+
         public bool Activo
         {
             get { return _activo; }
             set { _activo = value; }
         }
 
+        public bool Eliminado
+        {
+            get { return _eliminado; }
+            set { _eliminado = value; }
+        }
+
+        // Constructor vacío por defecto
         public PeriodosCosecha()
         {
             _idPeriodo = 0;
@@ -45,20 +57,27 @@ namespace FincaManager.Entities
             _fechaInicio = DateTime.Now;
             _fechaFin = DateTime.Now;
             _activo = true;
+            _eliminado = false;
         }
+
+        // Constructor completo (ideal para consultas desde la BD)
         public PeriodosCosecha(
             int idPeriodo,
             string nombre,
             DateTime fechaInicio,
             DateTime fechaFin,
-            bool activo)
+            bool activo,
+            bool eliminado)
         {
             _idPeriodo = idPeriodo;
             _nombre = nombre;
             _fechaInicio = fechaInicio;
             _fechaFin = fechaFin;
             _activo = activo;
+            _eliminado = eliminado;
         }
+
+        // Constructor para inserción (sin ID, con estados por defecto)
         public PeriodosCosecha(
             string nombre,
             DateTime fechaInicio,
@@ -70,6 +89,7 @@ namespace FincaManager.Entities
             _fechaInicio = fechaInicio;
             _fechaFin = fechaFin;
             _activo = activo;
+            _eliminado = false;
         }
     }
 }

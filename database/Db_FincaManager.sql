@@ -7,7 +7,9 @@ GO
 CREATE TABLE Tbl_Roles (
     IdRol INT PRIMARY KEY IDENTITY(1,1),
     Nombre VARCHAR(50) NOT NULL,
-    Descripcion VARCHAR(200) NOT NULL
+    Descripcion VARCHAR(200) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
@@ -18,6 +20,7 @@ CREATE TABLE Tbl_Usuarios (
     Correo VARCHAR(100) NOT NULL UNIQUE,
     PasswordHash VARCHAR(255) NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0,
     CONSTRAINT FK_Usuario_Rol FOREIGN KEY (IdRol) REFERENCES Tbl_Roles(IdRol)
 );
 GO
@@ -26,7 +29,9 @@ CREATE TABLE Tbl_Fincas (
     IdFinca INT PRIMARY KEY IDENTITY(1,1),
     Nombre VARCHAR(100) NOT NULL,
     Ubicacion VARCHAR(250),
-    AreaTotalManzanas DECIMAL(18,2) NOT NULL
+    AreaTotalManzanas DECIMAL(18,2) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
@@ -37,6 +42,8 @@ CREATE TABLE Tbl_LotesSectores (
     AreaTrabajableMetros DECIMAL(18,2) NOT NULL,
     TotalPlantas INT NOT NULL,
     VariedadCultivo VARCHAR(100) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0,
     CONSTRAINT FK_Lote_Finca FOREIGN KEY (IdFinca) REFERENCES Tbl_Fincas(IdFinca)
 );
 GO
@@ -46,26 +53,33 @@ CREATE TABLE Tbl_PeriodosCosecha (
     Nombre VARCHAR(50) NOT NULL,
     FechaInicio DATETIME NOT NULL,
     FechaFin DATETIME NOT NULL,
-    Activo BIT NOT NULL DEFAULT 1
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
 CREATE TABLE Tbl_Categorias (
     IdCategoria INT PRIMARY KEY IDENTITY(1,1),
-    Nombre VARCHAR(100) NOT NULL
+    Nombre VARCHAR(100) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
 CREATE TABLE Tbl_Marcas (
     IdMarca INT PRIMARY KEY IDENTITY(1,1),
-    Nombre VARCHAR(100) NOT NULL
+    Nombre VARCHAR(100) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
 CREATE TABLE Tbl_UnidadesMedida (
     IdUnidadesMedida INT PRIMARY KEY IDENTITY(1,1),
     Nombre VARCHAR(50) NOT NULL,
-    Abreviatura VARCHAR(10) NOT NULL
+    Abreviatura VARCHAR(10) NOT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
@@ -79,6 +93,7 @@ CREATE TABLE Tbl_Productos (
     CantidadMedidas DECIMAL(18,2) NOT NULL,
     StockMinimo DECIMAL(18,2) NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0,
     CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IdCategoria) REFERENCES Tbl_Categorias(IdCategoria),
     CONSTRAINT FK_Producto_Marca FOREIGN KEY (IdMarca) REFERENCES Tbl_Marcas(IdMarca),
     CONSTRAINT FK_Producto_Unidad FOREIGN KEY (IdUnidadMedida) REFERENCES Tbl_UnidadesMedida(IdUnidadesMedida)
@@ -104,7 +119,8 @@ CREATE TABLE Tbl_Empleados (
     Apellidos VARCHAR(100) NOT NULL,
     DPI VARCHAR(13) NOT NULL,
     Telefono VARCHAR(15),
-    Activo BIT NOT NULL DEFAULT 1
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
@@ -113,7 +129,9 @@ CREATE TABLE Tbl_TiposLabor (
     Nombre VARCHAR(100) NOT NULL,
     TipoPago VARCHAR(30) NOT NULL,
     TarifaBaseQuetzales DECIMAL(18,2) NOT NULL,
-    HorarioSugerido VARCHAR(50)
+    HorarioSugerido VARCHAR(50),
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
@@ -159,7 +177,9 @@ CREATE TABLE Tbl_Proveedores (
     Nit VARCHAR(15) NOT NULL,
     NombreRazonSocial VARCHAR(150) NOT NULL,
     Direccion VARCHAR(200) NOT NULL,
-    Telefono VARCHAR(15)
+    Telefono VARCHAR(15),
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 
@@ -244,6 +264,7 @@ CREATE TABLE Tbl_CuentasFinancieras (
     NumeroCuenta VARCHAR(50),
     NombreBanco VARCHAR(100),
     Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0,
     SaldoActualQuetzales DECIMAL(18,2) NOT NULL DEFAULT 0.00
 );
 GO
@@ -265,6 +286,8 @@ CREATE TABLE Tbl_ParametrosSistema (
     IdParametro INT PRIMARY KEY IDENTITY(1,1),
     Clave VARCHAR(50) NOT NULL UNIQUE,
     Valor VARCHAR(255) NOT NULL,
-    Descripcion VARCHAR(200)
+    Descripcion VARCHAR(200),
+    Activo BIT NOT NULL DEFAULT 1,
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO

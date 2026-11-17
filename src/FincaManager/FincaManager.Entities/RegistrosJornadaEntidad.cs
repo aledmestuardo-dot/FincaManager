@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class RegistrosJornada
+    public class RegistrosJornadaEntidad
     {
         private int _idRegistroJornada;
         private int _idEmpleado;
@@ -64,7 +64,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public RegistrosJornada()
+        public RegistrosJornadaEntidad()
         {
             _idRegistroJornada = 0;
             _idEmpleado = 0;
@@ -77,7 +77,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public RegistrosJornada(
+        public RegistrosJornadaEntidad(
             int idRegistroJornada,
             int idEmpleado,
             int idLoteSector,
@@ -98,7 +98,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID)
-        public RegistrosJornada(
+        public RegistrosJornadaEntidad(
             int idEmpleado,
             int idLoteSector,
             int idTipoLabor,

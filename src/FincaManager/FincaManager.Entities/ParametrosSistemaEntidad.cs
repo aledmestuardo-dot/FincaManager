@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class ParametrosSistema
+    public class ParametrosSistemaEntidad
     {
         private int _idParametro;
         private string _clave;
@@ -50,7 +50,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public ParametrosSistema()
+        public ParametrosSistemaEntidad()
         {
             _idParametro = 0;
             _clave = string.Empty;
@@ -61,7 +61,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public ParametrosSistema(
+        public ParametrosSistemaEntidad(
             int idParametro,
             string clave,
             string valor,
@@ -78,7 +78,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public ParametrosSistema(
+        public ParametrosSistemaEntidad(
             string clave,
             string valor,
             string descripcion)

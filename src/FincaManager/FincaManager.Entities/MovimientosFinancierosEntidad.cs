@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class MovimientosFinancieros
+    public class MovimientosFinancierosEntidad
     {
         private int _idMovimientoFinanciero;
         private int _idCuentaFinanciera;
@@ -64,7 +64,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public MovimientosFinancieros()
+        public MovimientosFinancierosEntidad()
         {
             _idMovimientoFinanciero = 0;
             _idCuentaFinanciera = 0;
@@ -77,7 +77,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public MovimientosFinancieros(
+        public MovimientosFinancierosEntidad(
             int idMovimientoFinanciero,
             int idCuentaFinanciera,
             string tipoMovimiento,
@@ -98,7 +98,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID)
-        public MovimientosFinancieros(
+        public MovimientosFinancierosEntidad(
             int idCuentaFinanciera,
             string tipoMovimiento,
             string metodoPago,

@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FincaManager.Bussines\FincaManager.Business.csproj" />
-    <ProjectReference Include="..\FincaManager.Entities\FincaManager.Entities.csproj" />
+    <ProjectReference Include="..\FincaManager.Bussines\FincaManager.Negocio.csproj" />
+    <ProjectReference Include="..\FincaManager.Entities\FincaManager.Entidad.csproj" />
   </ItemGroup>
 
 </Project>

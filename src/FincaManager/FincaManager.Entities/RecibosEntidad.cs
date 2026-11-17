@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Recibos
+    public class RecibosEntidad
     {
         private int _idRecibo;
         private int? _idEmpleado; // Ajustado a int? según la BD (Tbl_Recibos)
@@ -57,7 +57,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Recibos()
+        public RecibosEntidad()
         {
             _idRecibo = 0;
             _idEmpleado = null;
@@ -69,7 +69,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public Recibos(
+        public RecibosEntidad(
             int idRecibo,
             int? idEmpleado,
             int? idProveedor,
@@ -88,7 +88,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID)
-        public Recibos(
+        public RecibosEntidad(
             int? idEmpleado,
             int? idProveedor,
             string correlativoInterno,

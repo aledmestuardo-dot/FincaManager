@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Productos
+    public class ProductosEntidad
     {
         private int _idProducto;
         private int _idCategoria;
@@ -78,7 +78,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Productos()
+        public ProductosEntidad()
         {
             _idProducto = 0;
             _idCategoria = 0;
@@ -93,7 +93,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public Productos(
+        public ProductosEntidad(
             int idProducto,
             int idCategoria,
             int idMarca,
@@ -118,7 +118,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public Productos(
+        public ProductosEntidad(
             int idCategoria,
             int idMarca,
             int idUnidadMedida,

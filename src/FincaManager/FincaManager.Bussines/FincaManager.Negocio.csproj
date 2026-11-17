@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FincaManager.DataAccess\FincaManager.DataAccess.csproj" />
-    <ProjectReference Include="..\FincaManager.Entities\FincaManager.Entities.csproj" />
+    <ProjectReference Include="..\FincaManager.DataAccess\FincaManager.Datos.csproj" />
+    <ProjectReference Include="..\FincaManager.Entities\FincaManager.Entidad.csproj" />
   </ItemGroup>
 
 </Project>

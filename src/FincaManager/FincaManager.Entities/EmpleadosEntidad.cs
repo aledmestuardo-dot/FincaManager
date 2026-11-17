@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Empleados
+    public class EmpleadosEntidad
     {
         private int _idEmpleado;
         private string _nombres;
@@ -58,7 +58,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Empleados()
+        public EmpleadosEntidad()
         {
             _idEmpleado = 0;
             _nombres = string.Empty;
@@ -70,7 +70,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas que provienen de la BD)
-        public Empleados(
+        public EmpleadosEntidad(
             int idEmpleado,
             string nombres,
             string apellidos,
@@ -89,7 +89,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public Empleados(
+        public EmpleadosEntidad(
             string nombres,
             string apellidos,
             string dpi,

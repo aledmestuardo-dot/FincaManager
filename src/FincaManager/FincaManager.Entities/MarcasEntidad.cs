@@ -4,30 +4,23 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class UnidadesMedida
+    public class MarcasEntidad
     {
-        private int _idUnidadMedida;
+        private int _idMarca;
         private string _nombre;
-        private string _abreviatura;
         private bool _activo;
         private bool _eliminado;
 
-        public int IdUnidadMedida
+        public int IdMarca
         {
-            get { return _idUnidadMedida; }
-            set { _idUnidadMedida = value; }
+            get { return _idMarca; }
+            set { _idMarca = value; }
         }
 
         public string Nombre
         {
             get { return _nombre; }
             set { _nombre = value; }
-        }
-
-        public string Abreviatura
-        {
-            get { return _abreviatura; }
-            set { _abreviatura = value; }
         }
 
         public bool Activo
@@ -43,38 +36,28 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public UnidadesMedida()
+        public MarcasEntidad()
         {
-            _idUnidadMedida = 0;
+            _idMarca = 0;
             _nombre = string.Empty;
-            _abreviatura = string.Empty;
             _activo = true;
             _eliminado = false;
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public UnidadesMedida(
-            int idUnidadMedida,
-            string nombre,
-            string abreviatura,
-            bool activo,
-            bool eliminado)
+        public MarcasEntidad(int idMarca, string nombre, bool activo, bool eliminado)
         {
-            _idUnidadMedida = idUnidadMedida;
+            _idMarca = idMarca;
             _nombre = nombre;
-            _abreviatura = abreviatura;
             _activo = activo;
             _eliminado = eliminado;
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public UnidadesMedida(
-            string nombre,
-            string abreviatura)
+        public MarcasEntidad(string nombre)
         {
-            _idUnidadMedida = 0;
+            _idMarca = 0;
             _nombre = nombre;
-            _abreviatura = abreviatura;
             _activo = true;
             _eliminado = false;
         }

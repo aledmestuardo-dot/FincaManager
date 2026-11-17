@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Kardex
+    public class KardexEntidad
     {
         private int _idKardex;
         private int _idProducto;
@@ -64,7 +64,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Kardex()
+        public KardexEntidad()
         {
             _idKardex = 0;
             _idProducto = 0;
@@ -77,7 +77,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public Kardex(
+        public KardexEntidad(
             int idKardex,
             int idProducto,
             string tipoMovimiento,
@@ -98,7 +98,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID)
-        public Kardex(
+        public KardexEntidad(
             int idProducto,
             string tipoMovimiento,
             decimal cantidadUnidades,

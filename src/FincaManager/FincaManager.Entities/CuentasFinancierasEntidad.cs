@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class CuentasFinancieras
+    public class CuentasFinancierasEntidad
     {
         private int _idCuentaFinanciera;
         private string _nombre;
@@ -64,7 +64,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public CuentasFinancieras()
+        public CuentasFinancierasEntidad()
         {
             _idCuentaFinanciera = 0;
             _nombre = string.Empty;
@@ -77,7 +77,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas que provienen de la BD)
-        public CuentasFinancieras(
+        public CuentasFinancierasEntidad(
             int idCuentaFinanciera,
             string nombre,
             string tipo,
@@ -98,7 +98,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public CuentasFinancieras(
+        public CuentasFinancierasEntidad(
             string nombre,
             string tipo,
             string numeroCuenta,

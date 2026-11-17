@@ -4,6 +4,10 @@ GO
 USE DB_FincaManager;
 GO
 
+-- =====================================================
+-- MÓDULO DE SEGURIDAD Y ACCESO
+-- =====================================================
+
 CREATE TABLE Tbl_Roles (
     IdRol INT PRIMARY KEY IDENTITY(1,1),
     Nombre VARCHAR(50) NOT NULL,
@@ -24,6 +28,10 @@ CREATE TABLE Tbl_Usuarios (
     CONSTRAINT FK_Usuario_Rol FOREIGN KEY (IdRol) REFERENCES Tbl_Roles(IdRol)
 );
 GO
+
+-- =====================================================
+-- MÓDULO DE FINCAS, LOTES Y COSECHAS
+-- =====================================================
 
 CREATE TABLE Tbl_Fincas (
     IdFinca INT PRIMARY KEY IDENTITY(1,1),
@@ -54,9 +62,14 @@ CREATE TABLE Tbl_PeriodosCosecha (
     FechaInicio DATETIME NOT NULL,
     FechaFin DATETIME NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,
-    Eliminado BIT NOT NULL DEFAULT 0
+    Eliminado BIT NOT NULL DEFAULT 0,
+    CONSTRAINT CK_Periodo_Fechas CHECK (FechaFin >= FechaInicio)
 );
 GO
+
+-- =====================================================
+-- MÓDULO DE CATÁLOGOS E INVENTARIO
+-- =====================================================
 
 CREATE TABLE Tbl_Categorias (
     IdCategoria INT PRIMARY KEY IDENTITY(1,1),
@@ -75,7 +88,7 @@ CREATE TABLE Tbl_Marcas (
 GO
 
 CREATE TABLE Tbl_UnidadesMedida (
-    IdUnidadesMedida INT PRIMARY KEY IDENTITY(1,1),
+    IdUnidadMedida INT PRIMARY KEY IDENTITY(1,1),
     Nombre VARCHAR(50) NOT NULL,
     Abreviatura VARCHAR(10) NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,
@@ -91,12 +104,13 @@ CREATE TABLE Tbl_Productos (
     Nombre VARCHAR(150) NOT NULL,
     PesoProducto DECIMAL(18,2) NOT NULL,
     CantidadMedidas DECIMAL(18,2) NOT NULL,
+    StockActual DECIMAL(18,2) NOT NULL DEFAULT 0.00,
     StockMinimo DECIMAL(18,2) NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,
     Eliminado BIT NOT NULL DEFAULT 0,
     CONSTRAINT FK_Producto_Categoria FOREIGN KEY (IdCategoria) REFERENCES Tbl_Categorias(IdCategoria),
     CONSTRAINT FK_Producto_Marca FOREIGN KEY (IdMarca) REFERENCES Tbl_Marcas(IdMarca),
-    CONSTRAINT FK_Producto_Unidad FOREIGN KEY (IdUnidadMedida) REFERENCES Tbl_UnidadesMedida(IdUnidadesMedida)
+    CONSTRAINT FK_Producto_Unidad FOREIGN KEY (IdUnidadMedida) REFERENCES Tbl_UnidadesMedida(IdUnidadMedida)
 );
 GO
 
@@ -113,11 +127,15 @@ CREATE TABLE Tbl_Kardex (
 );
 GO
 
+-- =====================================================
+-- MÓDULO DE PERSONAL, JORNADAS Y LABORES AGRÍCOLAS
+-- =====================================================
+
 CREATE TABLE Tbl_Empleados (
     IdEmpleado INT PRIMARY KEY IDENTITY(1,1),
     Nombres VARCHAR(100) NOT NULL,
     Apellidos VARCHAR(100) NOT NULL,
-    DPI VARCHAR(13) NOT NULL,
+    DPI VARCHAR(13) NOT NULL UNIQUE,
     Telefono VARCHAR(15),
     Activo BIT NOT NULL DEFAULT 1,
     Eliminado BIT NOT NULL DEFAULT 0
@@ -136,16 +154,16 @@ CREATE TABLE Tbl_TiposLabor (
 GO
 
 CREATE TABLE Tbl_RegistrosJornada (
-    IdRegistoJornada INT PRIMARY KEY IDENTITY(1,1),
+    IdRegistroJornada INT PRIMARY KEY IDENTITY(1,1),
     IdEmpleado INT NOT NULL,
-    IdLotesSector INT NOT NULL,
+    IdLoteSector INT NOT NULL,
     IdTipoLabor INT NOT NULL,
     IdPeriodoCosecha INT NOT NULL,
     Fecha DATETIME NOT NULL,
     CantidadRealizada DECIMAL(18,2) NOT NULL,
     TotalPagadoQuetzales DECIMAL(18,2) NOT NULL,
     CONSTRAINT FK_Jornada_Empleado FOREIGN KEY (IdEmpleado) REFERENCES Tbl_Empleados(IdEmpleado),
-    CONSTRAINT FK_Jornada_Lote FOREIGN KEY (IdLotesSector) REFERENCES Tbl_LotesSectores(IdLoteSector),
+    CONSTRAINT FK_Jornada_Lote FOREIGN KEY (IdLoteSector) REFERENCES Tbl_LotesSectores(IdLoteSector),
     CONSTRAINT FK_Jornada_Labor FOREIGN KEY (IdTipoLabor) REFERENCES Tbl_TiposLabor(IdTipoLabor),
     CONSTRAINT FK_Jornada_Periodo FOREIGN KEY (IdPeriodoCosecha) REFERENCES Tbl_PeriodosCosecha(IdPeriodo)
 );
@@ -171,6 +189,10 @@ CREATE TABLE Tbl_DetalleAplicacionesFoliares (
     CONSTRAINT FK_DetalleApp_Producto FOREIGN KEY (IdProducto) REFERENCES Tbl_Productos(IdProducto)
 );
 GO
+
+-- =====================================================
+-- MÓDULO DE COMPRAS Y VENTAS
+-- =====================================================
 
 CREATE TABLE Tbl_Proveedores (
     IdProveedor INT PRIMARY KEY IDENTITY(1,1),
@@ -230,6 +252,10 @@ CREATE TABLE Tbl_DetalleVenta (
 );
 GO
 
+-- =====================================================
+-- MÓDULO DE DOCUMENTACIÓN Y FINANZAS
+-- =====================================================
+
 CREATE TABLE Tbl_Facturas (
     IdFactura INT PRIMARY KEY IDENTITY(1,1),
     IdVenta INT NULL,
@@ -240,7 +266,11 @@ CREATE TABLE Tbl_Facturas (
     FechaEmision DATETIME NOT NULL,
     MontoTotal DECIMAL(18,2) NOT NULL,
     CONSTRAINT FK_Factura_Venta FOREIGN KEY (IdVenta) REFERENCES Tbl_Ventas(IdVenta),
-    CONSTRAINT FK_Factura_Compra FOREIGN KEY (IdCompra) REFERENCES Tbl_Compras(IdCompra)
+    CONSTRAINT FK_Factura_Compra FOREIGN KEY (IdCompra) REFERENCES Tbl_Compras(IdCompra),
+    CONSTRAINT CK_Factura_Origen CHECK (
+        (IdVenta IS NOT NULL AND IdCompra IS NULL) OR 
+        (IdVenta IS NULL AND IdCompra IS NOT NULL)
+    )
 );
 GO
 
@@ -253,7 +283,11 @@ CREATE TABLE Tbl_Recibos (
     MontoTotalQuetzales DECIMAL(18,2) NOT NULL,
     Concepto VARCHAR(250) NOT NULL,
     CONSTRAINT FK_Recibo_Empleado FOREIGN KEY (IdEmpleado) REFERENCES Tbl_Empleados(IdEmpleado),
-    CONSTRAINT FK_Recibo_Proveedor FOREIGN KEY (IdProveedor) REFERENCES Tbl_Proveedores(IdProveedor)
+    CONSTRAINT FK_Recibo_Proveedor FOREIGN KEY (IdProveedor) REFERENCES Tbl_Proveedores(IdProveedor),
+    CONSTRAINT CK_Recibo_Destinatario CHECK (
+        (IdEmpleado IS NOT NULL AND IdProveedor IS NULL) OR 
+        (IdEmpleado IS NULL AND IdProveedor IS NOT NULL)
+    )
 );
 GO
 
@@ -263,9 +297,9 @@ CREATE TABLE Tbl_CuentasFinancieras (
     Tipo VARCHAR(20) NOT NULL,     
     NumeroCuenta VARCHAR(50),
     NombreBanco VARCHAR(100),
+    SaldoActualQuetzales DECIMAL(18,2) NOT NULL DEFAULT 0.00,
     Activo BIT NOT NULL DEFAULT 1,
-    Eliminado BIT NOT NULL DEFAULT 0,
-    SaldoActualQuetzales DECIMAL(18,2) NOT NULL DEFAULT 0.00
+    Eliminado BIT NOT NULL DEFAULT 0
 );
 GO
 

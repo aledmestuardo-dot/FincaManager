@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FincaManager.Entities\FincaManager.Entities.csproj" />
+    <ProjectReference Include="..\FincaManager.Entities\FincaManager.Entidad.csproj" />
   </ItemGroup>
 
 </Project>

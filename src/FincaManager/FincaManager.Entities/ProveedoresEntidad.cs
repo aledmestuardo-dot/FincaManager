@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Proveedores
+    public class ProveedoresEntidad
     {
         private int _idProveedor;
         private string _nit;
@@ -57,7 +57,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Proveedores()
+        public ProveedoresEntidad()
         {
             _idProveedor = 0;
             _nit = string.Empty;
@@ -69,7 +69,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public Proveedores(
+        public ProveedoresEntidad(
             int idProveedor,
             string nit,
             string nombreRazonSocial,
@@ -88,7 +88,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public Proveedores(
+        public ProveedoresEntidad(
             string nit,
             string nombreRazonSocial,
             string direccion,

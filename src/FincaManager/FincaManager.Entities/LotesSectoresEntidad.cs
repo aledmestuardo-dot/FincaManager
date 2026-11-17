@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class LotesSectores
+    public class LotesSectoresEntidad
     {
         private int _idLoteSector;
         private int _idFinca;
@@ -64,7 +64,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public LotesSectores()
+        public LotesSectoresEntidad()
         {
             _idLoteSector = 0;
             _idFinca = 0;
@@ -77,7 +77,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public LotesSectores(
+        public LotesSectoresEntidad(
             int idLoteSector,
             int idFinca,
             string nombre,
@@ -98,7 +98,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public LotesSectores(
+        public LotesSectoresEntidad(
             int idFinca,
             string nombre,
             decimal areaTrabajableMetros,

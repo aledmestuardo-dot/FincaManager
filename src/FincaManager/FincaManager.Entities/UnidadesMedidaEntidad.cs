@@ -4,19 +4,18 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Fincas
+    public class UnidadesMedidaEntidad
     {
-        private int _idFinca;
+        private int _idUnidadMedida;
         private string _nombre;
-        private string _ubicacion;
-        private decimal _areaTotal;
+        private string _abreviatura;
         private bool _activo;
         private bool _eliminado;
 
-        public int IdFinca
+        public int IdUnidadMedida
         {
-            get { return _idFinca; }
-            set { _idFinca = value; }
+            get { return _idUnidadMedida; }
+            set { _idUnidadMedida = value; }
         }
 
         public string Nombre
@@ -25,16 +24,10 @@ namespace FincaManager.Entities
             set { _nombre = value; }
         }
 
-        public string Ubicacion
+        public string Abreviatura
         {
-            get { return _ubicacion; }
-            set { _ubicacion = value; }
-        }
-
-        public decimal AreaTotal
-        {
-            get { return _areaTotal; }
-            set { _areaTotal = value; }
+            get { return _abreviatura; }
+            set { _abreviatura = value; }
         }
 
         public bool Activo
@@ -50,43 +43,38 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Fincas()
+        public UnidadesMedidaEntidad()
         {
-            _idFinca = 0;
+            _idUnidadMedida = 0;
             _nombre = string.Empty;
-            _ubicacion = string.Empty;
-            _areaTotal = 0m;
+            _abreviatura = string.Empty;
             _activo = true;
             _eliminado = false;
         }
 
-        // Constructor completo (ideal para consultas que provienen de la BD)
-        public Fincas(
-            int idFinca,
+        // Constructor completo (ideal para consultas desde la BD)
+        public UnidadesMedidaEntidad(
+            int idUnidadMedida,
             string nombre,
-            string ubicacion,
-            decimal areaTotal,
+            string abreviatura,
             bool activo,
             bool eliminado)
         {
-            _idFinca = idFinca;
+            _idUnidadMedida = idUnidadMedida;
             _nombre = nombre;
-            _ubicacion = ubicacion;
-            _areaTotal = areaTotal;
+            _abreviatura = abreviatura;
             _activo = activo;
             _eliminado = eliminado;
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public Fincas(
+        public UnidadesMedidaEntidad(
             string nombre,
-            string ubicacion,
-            decimal areaTotal)
+            string abreviatura)
         {
-            _idFinca = 0;
+            _idUnidadMedida = 0;
             _nombre = nombre;
-            _ubicacion = ubicacion;
-            _areaTotal = areaTotal;
+            _abreviatura = abreviatura;
             _activo = true;
             _eliminado = false;
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Facturas
+    public class FacturasEntidad
     {
         private int _idFactura;
         private int? _idVenta;   // Cambiado a int? porque es NULL en la BD
@@ -64,7 +64,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public Facturas()
+        public FacturasEntidad()
         {
             _idFactura = 0;
             _idVenta = null;
@@ -77,7 +77,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public Facturas(
+        public FacturasEntidad(
             int idFactura,
             int? idVenta,
             int? idCompra,
@@ -98,7 +98,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID)
-        public Facturas(
+        public FacturasEntidad(
             int? idVenta,
             int? idCompra,
             string uuidFel,

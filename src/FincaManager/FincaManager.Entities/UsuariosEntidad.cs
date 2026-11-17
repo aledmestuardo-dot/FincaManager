@@ -4,19 +4,26 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class PeriodosCosecha
+    public class UsuariosEntidad
     {
-        private int _idPeriodo;
+        private int _idUsuario;
+        private int _idRol;
         private string _nombre;
-        private DateTime _fechaInicio;
-        private DateTime _fechaFin;
+        private string _correo;
+        private string _passwordHash;
         private bool _activo;
         private bool _eliminado; // Añadido para el borrado lógico
 
-        public int IdPeriodo
+        public int IdUsuario
         {
-            get { return _idPeriodo; }
-            set { _idPeriodo = value; }
+            get { return _idUsuario; }
+            set { _idUsuario = value; }
+        }
+
+        public int IdRol
+        {
+            get { return _idRol; }
+            set { _idRol = value; }
         }
 
         public string Nombre
@@ -25,16 +32,16 @@ namespace FincaManager.Entities
             set { _nombre = value; }
         }
 
-        public DateTime FechaInicio
+        public string Correo
         {
-            get { return _fechaInicio; }
-            set { _fechaInicio = value; }
+            get { return _correo; }
+            set { _correo = value; }
         }
 
-        public DateTime FechaFin
+        public string PasswordHash
         {
-            get { return _fechaFin; }
-            set { _fechaFin = value; }
+            get { return _passwordHash; }
+            set { _passwordHash = value; }
         }
 
         public bool Activo
@@ -50,44 +57,49 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public PeriodosCosecha()
+        public UsuariosEntidad()
         {
-            _idPeriodo = 0;
+            _idUsuario = 0;
+            _idRol = 0;
             _nombre = string.Empty;
-            _fechaInicio = DateTime.Now;
-            _fechaFin = DateTime.Now;
+            _correo = string.Empty;
+            _passwordHash = string.Empty;
             _activo = true;
             _eliminado = false;
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public PeriodosCosecha(
-            int idPeriodo,
+        public UsuariosEntidad(
+            int idUsuario,
+            int idRol,
             string nombre,
-            DateTime fechaInicio,
-            DateTime fechaFin,
+            string correo,
+            string passwordHash,
             bool activo,
             bool eliminado)
         {
-            _idPeriodo = idPeriodo;
+            _idUsuario = idUsuario;
+            _idRol = idRol;
             _nombre = nombre;
-            _fechaInicio = fechaInicio;
-            _fechaFin = fechaFin;
+            _correo = correo;
+            _passwordHash = passwordHash;
             _activo = activo;
             _eliminado = eliminado;
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public PeriodosCosecha(
+        public UsuariosEntidad(
+            int idRol,
             string nombre,
-            DateTime fechaInicio,
-            DateTime fechaFin,
+            string correo,
+            string passwordHash,
             bool activo)
         {
-            _idPeriodo = 0;
+            _idUsuario = 0;
+            _idRol = idRol;
             _nombre = nombre;
-            _fechaInicio = fechaInicio;
-            _fechaFin = fechaFin;
+            _correo = correo;
+            _passwordHash = passwordHash;
             _activo = activo;
             _eliminado = false;
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Roles
+    public class RolesEntidad
     {
         private int _idRol;
         private string _nombre;
@@ -43,7 +43,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor por defecto
-        public Roles()
+        public RolesEntidad()
         {
             _idRol = 0;
             _nombre = string.Empty;
@@ -53,7 +53,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para Consultar (ideal para registros provenientes de la BD)
-        public Roles(
+        public RolesEntidad(
             int idRol,
             string nombre,
             string descripcion,
@@ -68,7 +68,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para Agregar / Insertar (sin ID, con estados por defecto)
-        public Roles(
+        public RolesEntidad(
             string nombre,
             string descripcion)
         {

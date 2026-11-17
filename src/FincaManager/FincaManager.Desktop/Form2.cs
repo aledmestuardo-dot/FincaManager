@@ -17,7 +17,7 @@ namespace FincaManager.Desktop
             InitializeComponent();
         }
 
-        public ConexionDB conn = new ConexionDB();
+        public ConexionBD conn = new ConexionBD();
         private void button1_Click(object sender, EventArgs e)
         {
             try

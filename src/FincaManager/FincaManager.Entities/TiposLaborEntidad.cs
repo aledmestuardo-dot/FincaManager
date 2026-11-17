@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class TiposLabor
+    public class TiposLaborEntidad
     {
         private int _idTipoLabor;
         private string _nombre;
@@ -57,7 +57,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío por defecto
-        public TiposLabor()
+        public TiposLaborEntidad()
         {
             _idTipoLabor = 0;
             _nombre = string.Empty;
@@ -69,7 +69,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas desde la BD)
-        public TiposLabor(
+        public TiposLaborEntidad(
             int idTipoLabor,
             string nombre,
             string tipoPago,
@@ -88,7 +88,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para inserción (sin ID, con estados por defecto)
-        public TiposLabor(
+        public TiposLaborEntidad(
             string nombre,
             string tipoPago,
             decimal tarifaBaseQuetzales,

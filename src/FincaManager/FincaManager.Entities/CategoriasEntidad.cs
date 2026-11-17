@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FincaManager.Entities
 {
-    public class Categorias
+    public class CategoriasEntidad
     {
         private int _idCategoria;
         private string _nombre;
@@ -36,7 +36,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor vacío
-        public Categorias()
+        public CategoriasEntidad()
         {
             _idCategoria = 0;
             _nombre = string.Empty;
@@ -45,7 +45,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor completo (ideal para consultas que vienen de la BD)
-        public Categorias(int idCategoria, string nombre, bool activo, bool eliminado)
+        public CategoriasEntidad(int idCategoria, string nombre, bool activo, bool eliminado)
         {
             _idCategoria = idCategoria;
             _nombre = nombre;
@@ -54,7 +54,7 @@ namespace FincaManager.Entities
         }
 
         // Constructor para insertar un nuevo registro (sin ID y con valores por defecto)
-        public Categorias(string nombre)
+        public CategoriasEntidad(string nombre)
         {
             _idCategoria = 0;
             _nombre = nombre;

@@ -13,9 +13,10 @@ namespace FincaManager.Entities
         private string _nombre;
         private decimal _pesoProducto;
         private decimal _cantidadMedidas;
+        private decimal _stockActual;
         private decimal _stockMinimo;
         private bool _activo;
-        private bool _eliminado; // Añadido para el borrado lógico
+        private bool _eliminado;
 
         public int IdProducto
         {
@@ -32,7 +33,7 @@ namespace FincaManager.Entities
         public int IdMarca
         {
             get { return _idMarca; }
-            set { _idMarca = value; } // Corregido: antes apuntaba a _idCategoria
+            set { _idMarca = value; }
         }
 
         public int IdUnidadMedida
@@ -57,6 +58,12 @@ namespace FincaManager.Entities
         {
             get { return _cantidadMedidas; }
             set { _cantidadMedidas = value; }
+        }
+
+        public decimal StockActual
+        {
+            get { return _stockActual; }
+            set { _stockActual = value; }
         }
 
         public decimal StockMinimo
@@ -87,6 +94,7 @@ namespace FincaManager.Entities
             _nombre = string.Empty;
             _pesoProducto = 0m;
             _cantidadMedidas = 0m;
+            _stockActual = 0m;
             _stockMinimo = 0m;
             _activo = true;
             _eliminado = false;
@@ -101,6 +109,7 @@ namespace FincaManager.Entities
             string nombre,
             decimal pesoProducto,
             decimal cantidadMedidas,
+            decimal stockActual,
             decimal stockMinimo,
             bool activo,
             bool eliminado)
@@ -112,12 +121,13 @@ namespace FincaManager.Entities
             _nombre = nombre;
             _pesoProducto = pesoProducto;
             _cantidadMedidas = cantidadMedidas;
+            _stockActual = stockActual;
             _stockMinimo = stockMinimo;
             _activo = activo;
             _eliminado = eliminado;
         }
 
-        // Constructor para inserción (sin ID, con estados por defecto)
+        // Constructor para inserción (sin ID, con stock y estados por defecto)
         public ProductosEntidad(
             int idCategoria,
             int idMarca,
@@ -125,8 +135,7 @@ namespace FincaManager.Entities
             string nombre,
             decimal pesoProducto,
             decimal cantidadMedidas,
-            decimal stockMinimo,
-            bool activo)
+            decimal stockMinimo)
         {
             _idProducto = 0;
             _idCategoria = idCategoria;
@@ -135,8 +144,9 @@ namespace FincaManager.Entities
             _nombre = nombre;
             _pesoProducto = pesoProducto;
             _cantidadMedidas = cantidadMedidas;
+            _stockActual = 0m;
             _stockMinimo = stockMinimo;
-            _activo = activo;
+            _activo = true;
             _eliminado = false;
         }
     }
